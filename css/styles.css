@@ -24,7 +24,7 @@ header,
 }
 
 .top-nav-collapse {
-  background-color: #3f51b5 !important;
+  background-color: #52489C !important;
 }
 
 .navbar:not(.top-nav-collapse) {
@@ -33,7 +33,7 @@ header,
 
 @media (max-width: 991px) {
   .navbar:not(.top-nav-collapse) {
-    background: #3f51b5 !important;
+    background: #52489C !important;
   }
 }
 
@@ -41,13 +41,13 @@ header,
   background: -webkit-linear-gradient(
     45deg,
     rgba(0, 0, 0, 0.7),
-    rgba(72, 15, 144, 0.4) 100%
+    rgba(89, 149, 217, 0.452) 100%
   );
 
   background: linear-gradient(
     to 45deg,
     rgba(0, 0, 0, 0.7),
-    rgba(72, 15, 144, 0.4) 100%
+    rgba(89, 149, 217, 0.452) 100%
   );
 }
 
