@@ -56,10 +56,6 @@ jQuery(document).ready(function() {
 
 function fillSelects(){
 
-    //var filterCountries = arrayCountries.filter((value, index, self) => self.indexOf(value) === index);
-    //var filterCountries = arrayMarkers.sort();
-    //console.log(filterCountries);
-
     arrayMarkers.forEach(function(country, i) {
       
       //Create Option Items Country
@@ -111,46 +107,26 @@ function cleanselectCountry(){
 
 function addDescriptionPublicationListener(marker){
   var nameBox = document.getElementById("name-bar-box");
-  nameBox.innerHTML = marker.properties.DoctoralStudent;
+  nameBox.innerHTML = marker.properties.City;
   var areaBox = document.getElementById("area-box");
-  areaBox.innerHTML = '<p class="element-title">Doctoral Student</p>'+
-  '<p align="justify">' + marker.properties.DoctoralStudent + "</p>"+
-  '<p class="element-title">Publication</p>'+
-  '<p align="justify">' + marker.properties.Publications + "</p>"+
-  '<p class="element-title">Conference Congress Symposium</p>'+
-  '<p align="justify">' + marker.properties.ConferenceCongressSymposium + "</p>"+
-  '<p class="element-title">Year</p>'+
-  '<p align="justify">' + marker.properties.Year + "</p>"+
-  '<p class="element-title">City</p>'+
+  areaBox.innerHTML = '<p class="element-title">Dirección</p>'+
+  '<p align="justify">' + marker.properties.Address + "</p>"+
+  '<p class="element-title">Ciudad</p>'+
   '<p align="justify">' + marker.properties.City + "</p>"+
-  '<p class="element-title">Published In</p>'+
-  '<p align="justify">' + marker.properties.Publishedin + "</p>"+
-  '<p class="element-title">Research Area</p>'+
-  '<p align="justify">' + marker.properties.ResearchAreas + "</p>"+
-  '<p class="element-title">Indexing In</p>'+
-  '<p align="justify">' + marker.properties.Indexing + "</p> <br>";
+  '<p class="element-title">País</p>'+
+  '<p align="justify">' + marker.properties.Country + "</p>"+"<br>";
 }
 
 function addDescriptionPublication(selectedOption, arrayOptions){
   var nameBox = document.getElementById("name-bar-box");
-  nameBox.innerHTML = arrayOptions[selectedOption.value].properties.DoctoralStudent;
+  nameBox.innerHTML = arrayOptions[selectedOption.value].properties.City;
   var areaBox = document.getElementById("area-box");
-  areaBox.innerHTML ='<p class="element-title">Doctoral Student</p>'+
-  '<p align="justify">' + arrayOptions[selectedOption.value].properties.DoctoralStudent + "</p>"+
-  '<p class="element-title">Publication</p>'+
-  '<p align="justify">' + arrayOptions[selectedOption.value].properties.Publications + "</p>"+
-  '<p class="element-title">Conference Congress Symposium</p>'+
-  '<p align="justify">' + arrayOptions[selectedOption.value].properties.ConferenceCongressSymposium + "</p>"+
-  '<p class="element-title">Year</p>'+
-  '<p align="justify">' + arrayOptions[selectedOption.value].properties.Year + "</p>"+
-  '<p class="element-title">City</p>'+
+  areaBox.innerHTML ='<p class="element-title">Dirección</p>'+
+  '<p align="justify">' + arrayOptions[selectedOption.value].properties.Address + "</p>"+
+  '<p class="element-title">Ciudad</p>'+
   '<p align="justify">' + arrayOptions[selectedOption.value].properties.City + "</p>"+
-  '<p class="element-title">Published In</p>'+
-  '<p align="justify">' + arrayOptions[selectedOption.value].properties.Publishedin + "</p>"+
-  '<p class="element-title">Research Area</p>'+
-  '<p align="justify">' + arrayOptions[selectedOption.value].properties.ResearchAreas + "</p>"+
-  '<p class="element-title">Indexing In</p>'+
-  '<p align="justify">' + arrayOptions[selectedOption.value].properties.Indexing + "</p> <br>";
+  '<p class="element-title">País</p>'+
+  '<p align="justify">' + arrayOptions[selectedOption.value].properties.Country + "</p>"+"<br>";
 }
 
 function addAnimatedIcon(marker) {
@@ -250,7 +226,7 @@ var pulsingDot = {
     context.clearRect(0, 0, this.width, this.height);
     context.beginPath();
     context.arc(this.width / 2, this.height / 2, outerRadius, 0, Math.PI * 2);
-    context.fillStyle = "rgba(255, 150, 150," + (1 - t) + ")";
+    context.fillStyle = "rgba(82, 72, 156," + (1 - t) + ")";
     context.fill();
     // update this image's data with data from the canvas
     this.data = context.getImageData(0, 0, this.width, this.height).data;

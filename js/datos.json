@@ -9,15 +9,11 @@
       },
       "properties": {
         "Nro.": "1",
-        "DoctoralStudent": "Oswaldo Efraín Díaz Rodríguez",
-        "Publications": "Diaz, O., & Pérez, M. (2018). Log Design for Storing Seismic Event Characteristics Using Process, Text, and Opinion Mining Techniques. The 5th International Conference on eDemocracy & eGovernment (ICEDEG) (págs. 281-285). Ambato, Ecuador : IEEE.",
+        "Address": "Av. Olmedo y Calle Floreana",
         "Country": "Ecuador",
         "City": "Ambato",
         "Year": "2018",
-        "ConferenceCongressSymposium": " The  Fifth International Conference on eDemocracy & eGovernment (ICEDEG 2018)",
-        "Publishedin": "IEEE",
-        "ResearchAreas": "Information Systems",
-        "Indexing": "Scopus"
+        "Cars":"20"
       }
     },
     {
@@ -28,71 +24,56 @@
       },
       "properties": {
         "Nro.": "2",
-        "DoctoralStudent": "Andrés Fernando Bastidas Fuertes",
-        "Publications": "Bastidas, A., & Pérez, M. (2018). A systematic review on Transpiler usage for Transaction-Oriented Applications. IEEE Third Ecuador Technical Chapters Meeting (ETCM) (págs. 1-6.). Cuenca, Ecuador: IEEE.",
+        "Address": "Av. De las Americas y Calle del Arrayan",
         "Country": "Ecuador",
         "City": "Cuenca",
         "Year": "2018",
-        "ConferenceCongressSymposium": "The Third Ecuador Technical Chapters Meeting (IEEE  ETCM 2018)",
-        "Publishedin": "IEEE",
-        "ResearchAreas": "Software Engineering",
-        "Indexing": "Scopus "
+        "Cars":"30"
       }
     },
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-80.1199503, -2.1520379]
+        "coordinates": [-79.9044395,-2.1390626]
       },
       "properties": {
         "Nro.": "3",
-        "DoctoralStudent": "Carlos José Martínez Santander",
-        "Publications": "Martínez, C., Sang Guun Yoo, & Moreno, H. (2018). Analysis of Traditional Web Security Solutions and Proposal of a Web Attacks Cognitive Patterns Classifier Architecture. En G. A.-M.-M.-L.-L. Prof. Rafael Valencia-García (Ed.), The 4th International Conference on Technologies and Innovation, CITI Proceedings. Guayaquil, Ecuador: Springer International.",
+        "Address": "8A, Alborada Etapa 8 090501",
         "Country": "Ecuador",
         "City": "Guayaquil",
         "Year": "2018",
-        "ConferenceCongressSymposium": "The 4th International Conference on Technologies and Innovation, ( CITI 2018) ",
-        "Publishedin": "SPRINGER",
-        "ResearchAreas": "Informatic Security",
-        "Indexing": "Scopus"
+        "Cars":"40"
       }
     },
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-78.6146048, -0.9315345]
+        "coordinates": [-78.6142687,-0.930623]
       },
       "properties": {
         "Nro.": "4",
-        "DoctoralStudent": "Carlos Eduardo Anchundia Valencia",
-        "Publications": "Anchundia , C. (2017). The vision of aspects to improve problem solving skills: A case study . XII Jornadas Iberoamericanas de Ingenieria de Software e Ingenieria del Conocimiento 2017 (JIISIC'17) Held jointly with the Ecuadorian Conference on Software Engineering (CEIS'2017) and the Conference on Software Engineering Applied to Control and Automat (pág. 367 (1 Vol)). Latacunga, Ecuador : Gomez, O. S.",
+        "Address": "Calle Juan Abel Echeverria 885-801",
         "Country": "Ecuador",
         "City": "Latacunga",
         "Year": "2017",
-        "ConferenceCongressSymposium": " XII Jornadas Iberoamericanas de Ingenieria de Software e Ingenieria del Conocimiento 2017 (JIISIC'17) - Held Jointly with the Ecuadorian Conference on Software Engineering, CEIS 2017 and the Conference on Software Engineering Applied to Control and Automation Systems, ISASCA 2017 ",
-        "Publishedin": "JIISIC ´17                                  CEIS 2017                         ISASCA 2017",
-        "ResearchAreas": "Software Engineering",
-        "Indexing": "Scopus"
+        "Cars":"15"
       }
     },
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-79.9960489, -3.2567732]
+        "coordinates": [-79.9927176,-3.2573744]
       },
       "properties": {
         "Nro.": "5",
-        "DoctoralStudent": "Rubén Eduardo Nogales Portero",
-        "Publications": "Nogales, R., & Benalcázar , M. (2019). Reconocimiento de Gestos de la Mano en Tiempo Real Usando Leap Motion Controller y Machine Learning. Semana de la Ciencia Conference Proceedings ( UTMACH). Volume 3, págs. 823 - 835. Machala, Ecuador: Centro de Investigaciones de la Universidad Técnica de Machala Open Journal Systems.",
+        "Address": "Puerto Bolivar, Machala",
         "Country": "Ecuador",
         "City": "Machala",
         "Year": "2019",
-        "ConferenceCongressSymposium": "Semana de la Ciencia Conference Proceedings ( UTMACH)",
-        "Publishedin": "Conference Proceedings UTMACH Semana de la Ciencia 2018",
-        "ResearchAreas": "Intelligent Systems"
+        "Cars":"25"
       }
     },
     {
@@ -103,34 +84,26 @@
       },
       "properties": {
         "Nro.": "6",
-        "DoctoralStudent": "Roberto Omar Andrade Paredes",
-        "Publications": "Andrade , R., & et al. (2019). Cognitive Security for Incident Management Process. En Á. F. Rocha (Ed.), The International Conference on Information Systems and Technologies Proceedings (ICITS) (págs. 612-621). Sangolqui, Ecuador : Advances in Intelligent Systems and Computing. Springer Nature.",
+        "Address": "San Rafael, Quitus 262",
         "Country": "Ecuador",
         "City": "Sangolqui",
         "Year": "2019",
-        "ConferenceCongressSymposium": " The 2019 International Conference on Information Technology & Systems (ICITS'19) ",
-        "Publishedin": "SPRINGER",
-        "ResearchAreas": "Informatic Security",
-        "Indexing": "Scopus"
+        "Cars":"25"
       }
     },
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-80.9527467, -2.2305946]
+        "coordinates": [-80.9658982,-2.211785]
       },
       "properties": {
         "Nro.": "7",
-        "DoctoralStudent": "Andrés Fernando Bastidas Fuertes",
-        "Publications": "Bastidas , A., & Pérez, M. (2017). Transpiler-based architecture for multi-platform web applications. IEEE Second Ecuador Technical Chapters Meeting (ETCM) (págs. 1-6). Salinas, Ecuador: IEEE.",
+        "Address": "22 Diciembre, Salinas",
         "Country": "Ecuador",
         "City": "Salinas",
         "Year": "2017",
-        "ConferenceCongressSymposium": "The 2nd Second Ecuador Technical Chapters Meeting (IEEE ETCM 2017) ",
-        "Publishedin": "IEEE",
-        "ResearchAreas": "Software Engineering",
-        "Indexing": "Scopus"
+        "Cars":"20"
       }
     },
     {
@@ -141,15 +114,11 @@
       },
       "properties": {
         "Nro.": "8",
-        "DoctoralStudent": "Germán Eduardo Rodríguez Galán",
-        "Publications": "Rodriguez, G., & et al. (2018). Cookie Scout: An Analytic Model for Prevention of Cross-Site Scripting (XSS) Using a Cookie Classifier. En T. G. Álvaro Rocha (Ed.), Proceedings of the International Conference on Information Technology & Systems (ICITS´18 ). Santa Elena, Ecuador: Springer International Publishing.",
+        "Address": "La Libertad",
         "Country": "Ecuador",
         "City": "Santa Elena",
         "Year": "2018",
-        "ConferenceCongressSymposium": " The 2018 International Conference on Information Technology & Systems  (ICITS´18)",
-        "Publishedin": "SPRINGER",
-        "ResearchAreas": "Informatic Security",
-        "Indexing": "Scopus"
+        "Cars":"15"
       }
     },
 
@@ -161,14 +130,11 @@
       },
       "properties": {
         "Nro.": "9",
-        "DoctoralStudent": "Diego Eduardo Benavides Astudillo",
-        "Publications": "Benavides, D. (2019). FNCS: Proposal of a platform for the managenment of network devices based in RouterOS. 1ST International Congress on University Development Universidad Técnica Estatal de Quevedo. Quevedo, Ecuador.",
+        "Address": "Av Guayaquil y Manabi, Troncal de la Costa, Quevedo",
         "Country": "Ecuador",
         "City": "Quevedo",
         "Year": "2019",
-        "ConferenceCongressSymposium": "1ST International Congress on University Development Universidad Técnica Estatal de Quevedo (CIDU 2019)",
-        "ResearchAreas": "Informatic Security",
-        "Indexing": "(CIDU 2019)"
+        "Cars":"15"
       }
     },
     {
@@ -179,15 +145,11 @@
       },
       "properties": {
         "Nro.": "10",
-        "DoctoralStudent": "Víctor Vicente Velepucha Bonnet",
-        "Publications": "Velepucha, V., Flores, P., & Torres, J. (2019). Migration of monolithic applications towards microservices under the vision of the Information Hiding principle. A Systematic Mapping Study. En M. L.-A. Botto Tobar (Ed.), The International Conference on Advances in Emerging Trends and Technologies (ICAETT 2019). Volume 1, págs. 90-100. Quito, Ecuador: Springer, Cham.",
+        "Address": "Guangacalle, Quito 170136",
         "Country": "Ecuador",
         "City": "Quito",
         "Year": "2019",
-        "ConferenceCongressSymposium": "the 1st International Conference on Advances in Emerging Trends and Technologies (ICAETT 2019)",
-        "Publishedin": "SPRINGER",
-        "ResearchAreas": "Software Engineering",
-        "Indexing": "Scopus"
+        "Cars":"40"
       }
     }
   ]

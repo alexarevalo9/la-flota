@@ -11,8 +11,6 @@
   cursor: pointer;
 }
 
-
-
 .wrap {
   float: left;
   position: relative;
@@ -35,7 +33,7 @@
 .bar-box {
   position: relative;
   height: 50px;
-  background-color: #db4437;
+  background-color: #52489C;
 }
 .bar-box img {
   position: absolute;
