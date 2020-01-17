@@ -2,73 +2,108 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Required meta tags always come first -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Catálogo de Autos</title>
+  <!-- Required meta tags always come first -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>Red de Agencias</title>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="./css/all.css">
+  <title>Inicio</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="./css/all.css">
 
-    <!-- Bootstrap core CSS -->
-    <link href="./css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
+  <link href="./css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Material Design Bootstrap -->
-    <link href="./css/mdb.min.css" rel="stylesheet">
-    <link href="./css/styles.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="./css/mdb.min.css" rel="stylesheet">
+  <link href="./css/styles.css" rel="stylesheet">
+  <link href='https://api.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css' rel='stylesheet' />
+  <link rel="stylesheet" type="text/css" href="css/stylesmap.css">
+
 </head>
 
 <body>
-    <header>
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar" style="background-color:#52489C">
-            <div class="container">
-                <a class="navbar-brand font-weight-bold" href="index.html">
-                    <strong>LA FLOTA</strong>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent-7" aria-controls="navbarSupportedContent-7"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link waves-effect waves-light" href="index.html">Inicio
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link waves-effect waves-light" href="catalogo.html">Cátalogo de Autos</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link waves-effect waves-light" href="agencias.html">Red de Agencias<span
-                                    class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link waves-effect waves-light" href="ofertas.html">Ofertas</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link waves-effect waves-light" href="nosotros.html">Sobre Nosotros</a>
-                        </li>
-                    </ul>
-                    <form class="form-inline">
-                        <div class="md-form my-0">
-                            <!--<input class="form-control mr-sm-2" type="text" placeholder="Buscar" aria-label="Buscar">-->
-                            <button class="btn btn-outline-white mr-sm-2 btn-rounded">Iniciar Sesión</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </nav>
-        <!-- Navbar -->
-    </header>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar" style="background-color:#52489C">
+    <div class="container">
+      <a class="navbar-brand font-weight-bold" href="index.html">
+        <strong>LA FLOTA</strong>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7"
+        aria-controls="navbarSupportedContent-7" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link waves-effect waves-light" href="index.html">Inicio
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link waves-effect waves-light" href="catalogo.html">Cátalogo de Autos</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link waves-effect waves-light" href="agencias.html">Red de Agencias<span
+                class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect waves-light" href="ofertas.html">Ofertas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect waves-light" href="nosotros.html">Sobre Nosotros</a>
+          </li>
+        </ul>
+        <form class="form-inline">
+          <div class="md-form my-0">
+            <!--<input class="form-control mr-sm-2" type="text" placeholder="Buscar" aria-label="Buscar">-->
+            <button class="btn btn-outline-white mr-sm-2 btn-rounded">Iniciar Sesión</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Navbar -->
+  <br><br><br><br>
+  <div class="container">
+    <div class="row">
+      <div class="col-md">
+        <form class="text-center" action="#!"></form>
+        <select class="browser-default custom-select" id="selectCountry" style="width: 200px;">
+          <option value="" class="juan" selected disabled hidden>Agencia</option>
+        </select>
+        </form>
+      </div>
+    </div>
+    <br>
+    <!--Map-->
+    <div class="row">
+      <div id="right" class="wrap">
+        <div class="row">
+          <div id='map' frameborder="0" style="border:0;" allowfullscreen></div>
+        </div>
+
+        <div id="map-box" class="box-slide">
+          <div class="bar-box">
+            <img src="./resources/left_arrow.png" alt="" onclick="hiddenBox()">
+            <p id="name-bar-box"></p>
+          </div>
+          <div id="area-box"></div>
+        </div>
+      </div>
+    </div>
+    <!--/Map-->
+    <br>
+  </div>
 
 
-    <!-- Footer -->
+
+  <!-- Footer -->
   <footer class="page-footer font-small pt-4" style="background-color: #52489C;">
 
     <!-- Footer Links -->
@@ -82,7 +117,8 @@
 
           <!-- Content -->
           <h5 class="font-weight-bold text-uppercase mt-3 mb-4 ">LA FLOTA</h5>
-          <p class="text-justify">Conozca toda nuestra información de contacto, contamos con diversos canales de
+          <p class="text-justify">Conozca toda nuestra información de contacto, contamos con diversos canales
+            de
             comunicación, a través de los cuales podrá contactarnos en el momento que desee.</p>
 
         </div>
@@ -178,19 +214,26 @@
   <!-- Footer -->
 
 
-    <!-- SCRIPTS -->
-    <!-- JQuery -->
-    <script type="text/javascript" src="./css/jquery-3.3.1.min.js.descarga"></script>
-    <!-- Tooltips -->
-    <script type="text/javascript" src="./css/popper.min.js.descarga"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="./css/bootstrap.min.js.descarga"></script>
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="./css/mdb.min.js.descarga"></script>
-    <div class="hiddendiv common"></div>
-    <script>
-        new WOW().init();
-    </script>
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="./css/jquery-3.3.1.min.js.descarga"></script>
+  <!-- Tooltips -->
+  <script type="text/javascript" src="./css/popper.min.js.descarga"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="./css/bootstrap.min.js.descarga"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="./css/mdb.min.js.descarga"></script>
+  <div class="hiddendiv common"></div>
+  <!--MapBox-->
+  <script src='https://api.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.js'></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/mapa-fis.js"></script>
+  <script>
+    new WOW().init();
+  </script>
 </body>
+
+
 
 </html>
