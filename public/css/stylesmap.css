@@ -1,0 +1,108 @@
+#map {
+  height: 500px;
+  width: 100%;
+}
+
+.marker {
+  background-image: url("/resources/pin.png");
+  background-size: cover;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.wrap {
+  float: left;
+  position: relative;
+  height: 500px;
+  width: 100%;
+  margin: 2px;
+  overflow: hidden;
+}
+.box-slide {
+  top: 0;
+  left: 0;
+  height: 500px;
+  width: 310px;
+  background-color: #eeeeee;
+  position: absolute;
+  overflow-y: auto;
+  display:none;
+}
+
+.bar-box {
+  position: relative;
+  height: 50px;
+  background-color: #52489C;
+}
+.bar-box img {
+  position: absolute;
+  width: 16px;
+  top: 32%;
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+.bar-box p {
+  position: absolute;
+  top: 22%;
+  margin-left: 50px;
+  color: white;
+}
+
+#area-box {
+  position: absolute;
+  top: 14%;
+  width: 270px;
+  margin-left: 15px;
+  font-size: 14px;
+}
+
+.element-title{
+  color: #8d8d8d;
+  margin: 3px 0;
+}
+
+#name-bar-box{
+  font-size: 15px;
+}
+
+#resultado{
+  display: none;
+  background-color: #0ee770;
+  color: black;
+}
+
+.res-option{
+  background-color: white;
+}
+
+/*Styles of Scrollbar*/
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(173, 173, 173);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(110, 109, 109);
+}
+
+/*Mapbox logo and attribute*/
+.mapboxgl-ctrl-logo{
+  margin-left: 15px !important;
+}
+
+.mapboxgl-ctrl-attrib-inner{
+  margin-right: 15px !important;
+}

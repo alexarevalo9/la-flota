@@ -1,0 +1,156 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-78.6284947, -1.2465876]
+      },
+      "properties": {
+        "Nro.": "1",
+        "Address": "Av. Olmedo y Calle Floreana",
+        "Country": "Ecuador",
+        "City": "Ambato",
+        "Year": "2018",
+        "Cars":"20"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-79.0243997, -2.892183]
+      },
+      "properties": {
+        "Nro.": "2",
+        "Address": "Av. De las Americas y Calle del Arrayan",
+        "Country": "Ecuador",
+        "City": "Cuenca",
+        "Year": "2018",
+        "Cars":"30"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-79.9044395,-2.1390626]
+      },
+      "properties": {
+        "Nro.": "3",
+        "Address": "8A, Alborada Etapa 8 090501",
+        "Country": "Ecuador",
+        "City": "Guayaquil",
+        "Year": "2018",
+        "Cars":"40"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-78.6142687,-0.930623]
+      },
+      "properties": {
+        "Nro.": "4",
+        "Address": "Calle Juan Abel Echeverria 885-801",
+        "Country": "Ecuador",
+        "City": "Latacunga",
+        "Year": "2017",
+        "Cars":"15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-79.9927176,-3.2573744]
+      },
+      "properties": {
+        "Nro.": "5",
+        "Address": "Puerto Bolivar, Machala",
+        "Country": "Ecuador",
+        "City": "Machala",
+        "Year": "2019",
+        "Cars":"25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-78.4727036, -0.3359283]
+      },
+      "properties": {
+        "Nro.": "6",
+        "Address": "San Rafael, Quitus 262",
+        "Country": "Ecuador",
+        "City": "Sangolqui",
+        "Year": "2019",
+        "Cars":"25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-80.9658982,-2.211785]
+      },
+      "properties": {
+        "Nro.": "7",
+        "Address": "22 Diciembre, Salinas",
+        "Country": "Ecuador",
+        "City": "Salinas",
+        "Year": "2017",
+        "Cars":"20"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-80.8785799, -2.2280533]
+      },
+      "properties": {
+        "Nro.": "8",
+        "Address": "La Libertad",
+        "Country": "Ecuador",
+        "City": "Santa Elena",
+        "Year": "2018",
+        "Cars":"15"
+      }
+    },
+
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-79.4621517, -1.0220686]
+      },
+      "properties": {
+        "Nro.": "9",
+        "Address": "Av Guayaquil y Manabi, Troncal de la Costa, Quevedo",
+        "Country": "Ecuador",
+        "City": "Quevedo",
+        "Year": "2019",
+        "Cars":"15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-78.4936805, -0.2156388]
+      },
+      "properties": {
+        "Nro.": "10",
+        "Address": "Guangacalle, Quito 170136",
+        "Country": "Ecuador",
+        "City": "Quito",
+        "Year": "2019",
+        "Cars":"40"
+      }
+    }
+  ]
+}
