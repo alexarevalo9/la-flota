@@ -58,13 +58,13 @@
         <div class="md-form my-0">
           <!--<input class="form-control mr-sm-2" type="text" placeholder="Buscar" aria-label="Buscar">-->
           <button class="btn btn-outline-white mr-sm-2 btn-rounded" data-toggle="modal"
-            data-target="#modalLoginForm" id="initsesion">Iniciar Sesión</button>
+            data-target="#modalLoginForm" id="initsesion" onclick="signOutUser()">Iniciar Sesión</button>
         </div>
 
 
         <div class="md-form my-0">
           <button class="btn btn-outline-white mr-sm-2 btn-rounded" data-toggle="modal"
-            data-target="#modalRegisterForm" id="initregister">Registrarse</button>
+            data-target="#modalRegisterForm" id="initregister" onclick="myAccount()">Registrarse</button>
         </div>
       </div>
     </div>
@@ -97,7 +97,7 @@
 
         </div>
         <div class="modal-footer d-flex justify-content-center">
-          <button class="btn" style="background-color: #52489C;">Aceptar</button>
+          <button class="btn" style="background-color: #52489C;" onclick="authUser()">Aceptar</button>
         </div>
       </div>
     </div>
@@ -135,7 +135,7 @@
 
         </div>
         <div class="modal-footer d-flex justify-content-center">
-          <button class="btn" style="background-color: #52489C;">Registrarse</button>
+          <button class="btn" style="background-color: #52489C;" onclick="registerUser()">Registrarse</button>
         </div>
       </div>
     </div>

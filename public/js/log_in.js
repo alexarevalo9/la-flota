@@ -1,19 +1,23 @@
-
+var userName;
 
 function initApp(){
-
     firebase.auth().onAuthStateChanged(function(user) {
-        // [END_EXCLUDE]
         if (user) {
-          // User is signed in.
-          var email = user.email;
+            // User is signed in.
+            if(userName != null){
+                var updateNameProfile = firebase.auth().currentUser;
+                updateNameProfile.updateProfile({
+                    displayName: userName
+                });
+            }
 
-          console.log(email);
-          document.getElementById('initsesion').style.visibility = 'hidden';
-      
-          // [END_EXCLUDE]
+            document.getElementById('initsesion').textContent = 'Cerrar Sesión';
+            document.getElementById('initregister').textContent = user.displayName;
+
         } else {
-            console.log("displayName");
+            // User is signed out.
+            document.getElementById('initsesion').textContent = 'Iniciar Sesión';
+            document.getElementById('initregister').textContent = 'Registrarse';
         }
     });
 }
@@ -22,29 +26,45 @@ window.onload = function() {
     initApp();
 };
 
-function regis(){
+function registerUser(){
     var email = document.getElementById("orangeForm-email").value;
     var password = document.getElementById("orangeForm-pass").value;
-    
-    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-      });
-    
-}
+    userName = document.getElementById("orangeForm-name").value;
 
-function auth(){
-    var email = document.getElementById("defaultForm-email").value;
-    var password = document.getElementById("defaultForm-pass").value;
-    firebase.auth().signInWithEmailAndPassword(email, password).then(function(){
-
-        location.reload();
-
+    firebase.auth().createUserWithEmailAndPassword(email, password).then(function () {
+        alert("Registro Exitoso!!");
+        firebase.auth().signInWithEmailAndPassword(email, password).then(function () {
+            location.reload()
+        });
     }).catch(function(error) {
         var errorCode = error.code;
         var errorMessage = error.message;
-        console.log(errorCode, errorMessage);
+    });
+}
+
+function signOutUser() {
+    if (firebase.auth().currentUser) {
+        firebase.auth().signOut().then(function () {
+            location.reload()
+        });
+    }
+}
+
+function authUser(){
+    var email = document.getElementById("defaultForm-email").value;
+    var password = document.getElementById("defaultForm-pass").value;
+    firebase.auth().signInWithEmailAndPassword(email, password).then(function () {
+            location.reload()
+        }
+    ).catch(function(error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
         alert(errorCode, errorMessage);
     });
-    
+}
+
+function myAccount() {
+    if (firebase.auth().currentUser) {
+        window.location.href = "myaccount.html";
+    }
 }
