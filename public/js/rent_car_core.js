@@ -1,4 +1,4 @@
-var userName;
+let userName;
 
 function initApp(){
     firebase.auth().onAuthStateChanged(function(user) {
@@ -21,10 +21,6 @@ function initApp(){
         }
     });
 }
-
-window.onload = function() {
-    initApp();
-};
 
 function registerUser(){
     var email = document.getElementById("orangeForm-email").value;
@@ -68,3 +64,41 @@ function myAccount() {
         window.location.href = "myaccount.html";
     }
 }
+
+function rentCar(event){
+    $("#modalRentCar").modal();
+    let domElement = event.composedPath()[2];
+    let carName = domElement.getElementsByClassName("card-title font-weight-bold");
+    console.log(carName[0].innerText);
+}
+
+function openCity(evt, cityName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the link that opened the tab
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+window.onload = function () {
+    initApp();
+    document.querySelectorAll(".btn.btn-small.btn-alquilar.btn-rounded").forEach(item => {
+        item.addEventListener('click', event => {
+            rentCar(event)
+        });
+    })
+};
+
