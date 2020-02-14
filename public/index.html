@@ -175,7 +175,7 @@
               <label for="form_fecha_entrega" style="color: black">Fecha de Entrega</label>
             </div>
             <div class="text-center mt-4">
-              <button class="btn  waves-effect waves-light btn-rounded" style="background-color: #52489C;">Alquilar
+              <button id="rentCarButton" class="btn  waves-effect waves-light btn-rounded" style="background-color: #52489C;" onclick="rentCar()">Alquilar
                 Auto</button>
               <hr class="hr-light mb-3 mt-4">
               <div class="inline-ul text-center d-flex justify-content-center">
@@ -195,6 +195,69 @@
       </div>
     </div>
     <!--/Modal RentCar-->
+    <!--Modal Payment-->
+    <div class="modal fade" id="modalPayment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="card-body">
+            <!--Header-->
+            <div class="text-center">
+              <h3 class="black-text font-weight-bold" style="font-size: 1rem;">Seleccione un Método de Pago </h3>
+              <hr class="hr-light">
+            </div>
+            <!--Body-->
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                     value="Tarjeta de Crédito" checked>
+              <label class="form-check-label" for="exampleRadios1"><i class="fab fa-cc-visa prefix black-text"></i>
+                Tarjeta de Crédito
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
+                     value="Transferencia Bancaria">
+
+              <label class="form-check-label" for="exampleRadios2"><i class="fas fa-comments-dollar prefix black-text"></i>
+                Transferencia Bancaria
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3"
+                     value="PayPal">
+              <label class="form-check-label" for="exampleRadios3"><i class="fab fa-paypal prefix black-text"></i>
+                PayPal
+              </label>
+
+            </div>
+            <br>
+            <!--Header-->
+            <div class="text-center">
+              <h3 id="totalPagar" class="black-text font-weight-bold" style="font-size: 1rem;"> </h3>
+              <hr class="hr-light">
+            </div>
+            <div class="text-center mt-4">
+              <button id="paymentButton" class="btn  waves-effect waves-light btn-rounded"
+                      style="background-color: #52489C;" onclick="payment()">Pagar
+              </button>
+              <hr class="hr-light mb-3 mt-4">
+              <div class="inline-ul text-center d-flex justify-content-center">
+                <a class="p-2 m-2 tw-ic">
+                  <i class="fab fa-twitter white-text"></i>
+                </a>
+                <a class="p-2 m-2 li-ic">
+                  <i class="fab fa-facebook white-text"> </i>
+                </a>
+                <a class="p-2 m-2 ins-ic">
+                  <i class="fab fa-instagram white-text"> </i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/Modal Payment-->
     <!-- Navbar -->
     <!-- Full Page Intro -->
     <div class="view"
