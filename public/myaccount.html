@@ -22,6 +22,12 @@
     <link href="./css/mdb.min.css" rel="stylesheet">
     <link href="./css/styles.css" rel="stylesheet">
 
+    <style>
+        body {
+            overflow-x: hidden
+        }
+    </style>
+
 </head>
 
 <body>
@@ -57,13 +63,15 @@
             <div class="md-form my-0">
                 <!--<input class="form-control mr-sm-2" type="text" placeholder="Buscar" aria-label="Buscar">-->
                 <button class="btn btn-outline-white mr-sm-2 btn-rounded" data-toggle="modal"
-                        data-target="#modalLoginForm" id="initsesion" onclick="signOutUser()">Iniciar Sesión</button>
+                        data-target="#modalLoginForm" id="initsesion" onclick="signOutUser()">
+                </button>
             </div>
 
 
             <div class="md-form my-0">
                 <button class="btn btn-outline-white mr-sm-2 btn-rounded" data-toggle="modal"
-                        data-target="#modalRegisterForm" id="initregister" onclick="myAccount()">Registrarse</button>
+                        data-target="#modalRegisterForm" id="initregister" onclick="myAccount()">
+                </button>
             </div>
         </div>
     </div>
@@ -84,7 +92,8 @@
                 <div class="md-form mb-5">
                     <i class="fas fa-envelope prefix grey-text"></i>
                     <input type="email" id="defaultForm-email" class="form-control validate">
-                    <label data-error="wrong" data-success="right" for="defaultForm-email" style="color: black;">Email</label>
+                    <label data-error="wrong" data-success="right" for="defaultForm-email"
+                           style="color: black;">Email</label>
                 </div>
 
                 <div class="md-form mb-4">
@@ -117,12 +126,14 @@
                 <div class="md-form mb-5">
                     <i class="fas fa-user prefix grey-text"></i>
                     <input type="text" id="orangeForm-name" class="form-control validate">
-                    <label data-error="wrong" data-success="right" for="orangeForm-name" style="color: black;">Nombre</label>
+                    <label data-error="wrong" data-success="right" for="orangeForm-name"
+                           style="color: black;">Nombre</label>
                 </div>
                 <div class="md-form mb-5">
                     <i class="fas fa-envelope prefix grey-text"></i>
                     <input type="email" id="orangeForm-email" class="form-control validate">
-                    <label data-error="wrong" data-success="right" for="orangeForm-email" style="color: black;">Email</label>
+                    <label data-error="wrong" data-success="right" for="orangeForm-email"
+                           style="color: black;">Email</label>
                 </div>
 
                 <div class="md-form mb-4">
@@ -140,18 +151,139 @@
     </div>
 </div>
 <!--/Modal Register-->
+<!--Modal Payment-->
+<div class="modal fade" id="modalRate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="card-body">
+                <!--Header-->
+                <div class="text-center">
+                    <h3 class="black-text font-weight-bold" style="font-size: 1rem;">Valoración</h3>
+                    <hr class="hr-light">
+                </div>
+                <!--Body-->
+                <div class="container text-center">
+                    <span id="rateMe2"  class="empty-stars mdb-rating"></span><br><br>
+                    <div class="form-group">
+                        <textarea id="comentaryText" class="form-control rounded-0" rows="3"></textarea>
+                    </div>
+                </div>
+                <br>
+                <!--Header-->
+                <div class="text-center">
+                    <h3 id="totalPagar" class="black-text font-weight-bold" style="font-size: 1rem;"> </h3>
+                    <hr class="hr-light">
+                </div>
+                <div class="text-center mt-4">
+                    <button id="paymentButton" class="btn  waves-effect waves-light btn-rounded"
+                            style="background-color: #52489C;" onclick="enviarValoracionFirebase()">Valorar
+                    </button>
+                    <hr class="hr-light mb-3 mt-4">
+                    <div class="inline-ul text-center d-flex justify-content-center">
+                        <a class="p-2 m-2 tw-ic">
+                            <i class="fab fa-twitter white-text"></i>
+                        </a>
+                        <a class="p-2 m-2 li-ic">
+                            <i class="fab fa-facebook white-text"> </i>
+                        </a>
+                        <a class="p-2 m-2 ins-ic">
+                            <i class="fab fa-instagram white-text"> </i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/Modal Payment-->
 <br><br><br><br>
-
 
 
 <!--Main-->
 <main>
+    <!-- Grid row -->
+    <div class="row">
+
+        <!-- Grid column -->
+        <div class="col-md-3">
+
+            <ul id= "nav-pills-bar-radius" class="nav flex-column md-pills nav-justified pills-border-right-radius pills-purple-count"
+                aria-orientation="vertical">
+                <li class="nav-item">
+                    <a id="first-item-nav" class="nav-link active text-left" data-toggle="tab" href="#panel100" role="tab"></a>
+                </li>
+                <li class="nav-item">
+                    <a id="second-item-nav" class="nav-link text-left" data-toggle="tab" href="#panel101" role="tab"></a>
+                </li>
+                <li class="nav-item">
+                    <a id="third-item-nav" class="nav-link text-left" data-toggle="tab" href="#panel102" role="tab"></a>
+                </li>
+            </ul>
+
+        </div>
+        <!-- Tab panels -->
+        <div class="col-md-9 tab-content">
+
+            <!--Panel 1-->
+            <div class="tab-pane fade in show active" id="panel100" role="tabpanel">
+
+                <h2 id="nombre-user-rent"></h2><br>
+                <h4 id="email-user-rent"></h4>
+
+            </div>
+            <!--/.Panel 1-->
+
+            <!--Panel 2-->
+            <div class="tab-pane fade" id="panel101" role="tabpanel">
+
+                <div id="container-rents-fire" class="container">
+
+
+            </div>
+            </div>
+                <!--/.Panel 2-->
+
+                <!--Panel 3-->
+                <div class="tab-pane fade" id="panel102" role="tabpanel">
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta
+                        doloribus
+                        reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat
+                        ratione
+                        porro voluptate odit minima.</p>
+
+                </div>
+                <!--/.Panel 3-->
+
+                <!--Panel 4-->
+                <div class="tab-pane fade" id="panel108" role="tabpanel">
+
+                    <p>PutoLorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta
+                        doloribus
+                        reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat
+                        ratione
+                        porro voluptate odit minima.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta
+                        doloribus
+                        reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat
+                        ratione
+                        porro voluptate odit minima.</p>
+
+                </div>
+                <!--/.Panel 4-->
+
+            </div>
+            <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
 
 
 </main>
 <!--/Main-->
 
-
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <!-- Footer -->
 <footer class="page-footer font-small pt-4" style="background-color: #52489C;">
 

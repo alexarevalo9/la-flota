@@ -60,12 +60,12 @@
           <div class="md-form my-0">
             <!--<input class="form-control mr-sm-2" type="text" placeholder="Buscar" aria-label="Buscar">-->
             <button class="btn btn-outline-white mr-sm-2 btn-rounded" data-toggle="modal" data-target="#modalLoginForm" id="initsesion"
-                    onclick=signOutUser() >Iniciar Sesión</button>
+                    onclick=signOutUser() ></button>
           </div>
 
           <div class="md-form my-0">
             <button class="btn btn-outline-white mr-sm-2 btn-rounded" data-toggle="modal"
-              data-target="#modalRegisterForm" id="initregister" onclick=myAccount()>Registrarse</button>
+              data-target="#modalRegisterForm" id="initregister" onclick=myAccount()></button>
           </div>
 
         </div>
@@ -142,59 +142,64 @@
       </div>
     </div>
     <!--/Modal Register-->
-    <!--Modal RentCar-->
-    <div class="modal fade" id="modalRentCar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-         aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="card-body">
-            <!--Header-->
-            <div class="text-center">
-              <h3 class="black-text font-weight-bold" style="font-size: 1rem;">Alquiler de Autos en Quito</h3>
-              <hr class="hr-light">
-            </div>
-            <!--Body-->
-            <div class="md-form">
-              <i class="fas fa-map-marker-alt prefix black-text"></i>
-              <input type="text" id="form_lugar_recogida" class="black-text form-control">
-              <label for="form_lugar_recogida" style="color: black">Lugar de recogida del auto</label>
-            </div>
-            <div class="md-form">
-              <i class="fas fa-map-marker-alt prefix black-text"></i>
-              <input type="text" id="form_lugar_entrega" class="black-text form-control">
-              <label for="form_lugar_entrega" style="color: black">Lugar de entrega del auto</label>
-            </div>
-            <div class="md-form">
-              <i class="fas fa-calendar-alt prefix black-text"></i>
-              <input type="text" id="form_fecha_recogida" class="black-text form-control" data-provide="datepicker">
-              <label for="form_fecha_recogida" style="color: black">Fecha de Recogida</label>
-            </div>
-            <div class="md-form">
-              <i class="fas fa-calendar-alt prefix black-text"></i>
-              <input type="text" id="form_fecha_entrega" class="black-text form-control" data-provide="datepicker">
-              <label for="form_fecha_entrega" style="color: black">Fecha de Entrega</label>
-            </div>
-            <div class="text-center mt-4">
-              <button id="rentCarButton" class="btn  waves-effect waves-light btn-rounded" style="background-color: #52489C;" onclick="rentCar()">Alquilar
-                Auto</button>
-              <hr class="hr-light mb-3 mt-4">
-              <div class="inline-ul text-center d-flex justify-content-center">
-                <a class="p-2 m-2 tw-ic">
-                  <i class="fab fa-twitter white-text"></i>
-                </a>
-                <a class="p-2 m-2 li-ic">
-                  <i class="fab fa-facebook white-text"> </i>
-                </a>
-                <a class="p-2 m-2 ins-ic">
-                  <i class="fab fa-instagram white-text"> </i>
-                </a>
+      <!--Modal RentCar-->
+      <div class="modal fade" id="modalRentCar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+           aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="card-body">
+                      <!--Header-->
+                      <div class="md-form text-center">
+                          <h4 id= "title-image-rent" class="card-title font-weight-bold"></h4>
+                          <p id="description-car-image" class="card-text"></p>
+                          <img id="image-auto-rent" class="rounded mx-auto d-block" src="">
+                      </div>
+                      <!--Body-->
+                      <div class="md-form">
+                          <i class="fas fa-map-marker-alt prefix black-text"></i>
+                          <input type="text" id="form_lugar_recogida" class="black-text form-control">
+                          <label for="form_lugar_recogida" style="color: black">Lugar de recogida del auto</label>
+                      </div>
+                      <div class="md-form">
+                          <i class="fas fa-map-marker-alt prefix black-text"></i>
+                          <input type="text" id="form_lugar_entrega" class="black-text form-control">
+                          <label for="form_lugar_entrega" style="color: black">Lugar de entrega del auto</label>
+                      </div>
+                      <div class="md-form">
+                          <i class="fas fa-calendar-alt prefix black-text"></i>
+                          <input type="text" id="form_fecha_recogida" class="black-text form-control"
+                                 data-provide="datepicker">
+                          <label for="form_fecha_recogida" style="color: black">Fecha de Recogida</label>
+                      </div>
+                      <div class="md-form">
+                          <i class="fas fa-calendar-alt prefix black-text"></i>
+                          <input type="text" id="form_fecha_entrega" class="black-text form-control"
+                                 data-provide="datepicker">
+                          <label for="form_fecha_entrega" style="color: black">Fecha de Entrega</label>
+                      </div>
+                      <div class="text-center mt-4">
+                          <button id="rentCarButton" class="btn  waves-effect waves-light btn-rounded"
+                                  style="background-color: #52489C;" onclick="rentCar()">Alquilar
+                              Auto
+                          </button>
+                          <hr class="hr-light mb-3 mt-4">
+                          <div class="inline-ul text-center d-flex justify-content-center">
+                              <a class="p-2 m-2 tw-ic">
+                                  <i class="fab fa-twitter white-text"></i>
+                              </a>
+                              <a class="p-2 m-2 li-ic">
+                                  <i class="fab fa-facebook white-text"> </i>
+                              </a>
+                              <a class="p-2 m-2 ins-ic">
+                                  <i class="fab fa-instagram white-text"> </i>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
               </div>
-            </div>
           </div>
-        </div>
       </div>
-    </div>
-    <!--/Modal RentCar-->
+      <!--/Modal RentCar-->
     <!--Modal Payment-->
     <div class="modal fade" id="modalPayment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true">
