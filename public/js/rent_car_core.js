@@ -9,6 +9,7 @@ let modoPago;
 let allrentcars = [];
 let alluserrentscars = [];
 let idCar;
+let urlImage;
 
 function initApp() {
     firebase.auth().onAuthStateChanged(function (user) {
@@ -492,12 +493,12 @@ function getCatalogFromFirebase() {
     let initialDiv = 0;
     content.innerHTML = "";
 
-     allrentcars.length = 0;
+    allrentcars.length = 0;
 
     db.collection("allcars").get().then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
 
-             allrentcars.push(doc.data());
+            allrentcars.push(doc.data());
 
             if (index % 3 === 0) {
                 initialDiv = index;
@@ -508,6 +509,7 @@ function getCatalogFromFirebase() {
             index++;
         });
         addlistenersEditarButton();
+        createButtonBuy();
     })
         .catch(function (error) {
             console.log("Error getting documents: ", error);
@@ -648,7 +650,6 @@ function fillCatalogAutos() {
             });
     }
 }
-
 
 function addlistenersEditarButton() {
     document.querySelectorAll(".btn.btn-editar.btn-rounded").forEach(item => {
@@ -943,8 +944,6 @@ function getAllCarRents(index, initialDiv, content, doc) {
     let imagecar = document.createElement("img");
     imagecar.className = "card-img-top";
     imagecar.src = searchCar(doc.get('tipoAuto'))[0].source;
-    // console.log(allrentcars);
-    //console.log(searchCar(doc.get('tipoAuto')));
     cardAttachDiv.appendChild(imagecar);
 
     let cardestDiv = document.createElement("div");
@@ -1066,6 +1065,62 @@ function createStarts(doc) {
     comentaryText.className = "text-left";
     comentaryText.innerText = doc.get('comentary');
     maindiv.appendChild(comentaryText);
+}
+
+function createButtonBuy() {
+    let content = document.getElementById("container-rents-fire");
+    let alquilarButtonCard = document.createElement("a");
+    alquilarButtonCard.type = "button";
+    alquilarButtonCard.className = "btn btn-small btn-create btn-rounded";
+    alquilarButtonCard.style = "background-color: #52489C";
+    alquilarButtonCard.innerText = "Nuevo";
+    alquilarButtonCard.addEventListener('click', event => {
+        $("#modalNewCarForm").modal();
+    });
+    content.appendChild(alquilarButtonCard);
+
+}
+
+function saveNewCarFireBase() {
+
+    let name = document.getElementById("form_nombre2").value;
+    let precio = document.getElementById("form_precio2").value;
+
+    let ref = firebase.storage().ref();
+    const file = document.querySelector('#form_file2').files[0];
+
+    if (name !== "" && precio !== "" && file !== null) {
+        const nameimage = (+new Date()) + '-' + file.name;
+        const metadata = {
+            contentType: file.type
+        };
+
+        const task = ref.child(nameimage).put(file, metadata);
+        task.then(snapshot => snapshot.ref.getDownloadURL())
+            .then((url) => {
+                urlImage = url;
+                savenewCarCatalog();
+            })
+            .catch(console.error);
+    } else {
+        alert("Debe ingresar todos los datos");
+    }
+
+}
+
+function savenewCarCatalog() {
+    let name = document.getElementById("form_nombre2").value;
+    let precio = document.getElementById("form_precio2").value;
+
+    var db = firebase.firestore();
+    db.collection("allcars").add({
+        "name": name,
+        "precio": precio,
+        "source": urlImage
+    }).then(function () {
+        $("#modalNewCarForm").modal('hide');
+        getCatalogFromFirebase();
+    })
 }
 
 window.onload = function () {

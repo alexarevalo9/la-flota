@@ -197,7 +197,6 @@
     </div>
 </div>
 <!--/Modal Valoracion-->
-
 <!--Modal Editar-->
 <div class="modal fade" id="modalEditarForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
@@ -243,6 +242,56 @@
     </div>
 </div>
 <!--/Modal Editar-->
+
+<!--Modal New-->
+<div class="modal fade" id="modalNewCarForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="card-body">
+                <!--Header-->
+                <div class="md-form text-center">
+                    <h4 id= "title-image-rent2" class="card-title font-weight-bold"></h4>
+                    <p id="description-car-image2" class="card-text"></p>
+                    <img id="image-auto-rent-edit2" class="rounded mx-auto d-block" src="">
+                </div>
+                <!--Body-->
+                <div class="md-form">
+                    <i class="fas fa-signature prefix black-text"></i>
+                    <input type="text" id="form_nombre2" class="black-text form-control">
+                    <label for="form_nombre2" style="color: black">Nombre Auto</label>
+                </div>
+                <div class="md-form">
+                    <i class="fas fa-money-check-alt prefix black-text"></i>
+                    <input type="text" id="form_precio2" class="black-text form-control">
+                    <label for="form_precio2" style="color: black">Precio Auto</label>
+                </div>
+                <div class="md-form">
+                    <i class="fas fa-images prefix black-text"></i>
+                    <input type="file" id="form_file2" class="black-text form-control">
+                </div>
+                <div class="text-center mt-4">
+                    <button id="addnewButton" class="btn  waves-effect waves-light btn-rounded"
+                            style="background-color: #52489C;" onclick="saveNewCarFireBase()">Aceptar
+                    </button>
+                    <hr class="hr-light mb-3 mt-4">
+                    <div class="inline-ul text-center d-flex justify-content-center">
+                        <a class="p-2 m-2 tw-ic">
+                            <i class="fab fa-twitter white-text"></i>
+                        </a>
+                        <a class="p-2 m-2 li-ic">
+                            <i class="fab fa-facebook white-text"> </i>
+                        </a>
+                        <a class="p-2 m-2 ins-ic">
+                            <i class="fab fa-instagram white-text"> </i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/Modal New-->
 <br><br><br><br>
 
 
@@ -464,6 +513,7 @@
 <!-- Add Firebase products that you want to use -->
 <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-storage.js"></script>
 
 <!-- TODO: Add SDKs for Firebase products that you want to use
   https://firebase.google.com/docs/web/setup#available-libraries -->
