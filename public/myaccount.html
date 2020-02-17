@@ -151,7 +151,7 @@
     </div>
 </div>
 <!--/Modal Register-->
-<!--Modal Payment-->
+<!--Modal Valoracion-->
 <div class="modal fade" id="modalRate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -164,7 +164,7 @@
                 </div>
                 <!--Body-->
                 <div class="container text-center">
-                    <span id="rateMe2"  class="empty-stars mdb-rating"></span><br><br>
+                    <span id="rateMe2" class="empty-stars mdb-rating"></span><br><br>
                     <div class="form-group">
                         <textarea id="comentaryText" class="form-control rounded-0" rows="3"></textarea>
                     </div>
@@ -172,7 +172,7 @@
                 <br>
                 <!--Header-->
                 <div class="text-center">
-                    <h3 id="totalPagar" class="black-text font-weight-bold" style="font-size: 1rem;"> </h3>
+                    <h3 id="totalPagar" class="black-text font-weight-bold" style="font-size: 1rem;"></h3>
                     <hr class="hr-light">
                 </div>
                 <div class="text-center mt-4">
@@ -196,7 +196,53 @@
         </div>
     </div>
 </div>
-<!--/Modal Payment-->
+<!--/Modal Valoracion-->
+
+<!--Modal Editar-->
+<div class="modal fade" id="modalEditarForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="card-body">
+                <!--Header-->
+                <div class="md-form text-center">
+                    <h4 id= "title-image-rent" class="card-title font-weight-bold"></h4>
+                    <p id="description-car-image" class="card-text"></p>
+                    <img id="image-auto-rent-edit" class="rounded mx-auto d-block" src="">
+                </div>
+                <!--Body-->
+                <div class="md-form">
+                    <i class="fas fa-signature prefix black-text"></i>
+                    <input type="text" id="form_nombre" class="black-text form-control">
+                    <label for="form_nombre" style="color: black">Nombre Auto</label>
+                </div>
+                <div class="md-form">
+                    <i class="fas fa-money-check-alt prefix black-text"></i>
+                    <input type="text" id="form_precio" class="black-text form-control">
+                    <label for="form_precio" style="color: black">Precio Auto</label>
+                </div>
+                <div class="text-center mt-4">
+                    <button id="editButton" class="btn  waves-effect waves-light btn-rounded"
+                            style="background-color: #52489C;" onclick="saveEdit()">Aceptar
+                    </button>
+                    <hr class="hr-light mb-3 mt-4">
+                    <div class="inline-ul text-center d-flex justify-content-center">
+                        <a class="p-2 m-2 tw-ic">
+                            <i class="fab fa-twitter white-text"></i>
+                        </a>
+                        <a class="p-2 m-2 li-ic">
+                            <i class="fab fa-facebook white-text"> </i>
+                        </a>
+                        <a class="p-2 m-2 ins-ic">
+                            <i class="fab fa-instagram white-text"> </i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/Modal Editar-->
 <br><br><br><br>
 
 
@@ -208,17 +254,18 @@
         <!-- Grid column -->
         <div class="col-md-3">
 
-            <ul id= "nav-pills-bar-radius" class="nav flex-column md-pills nav-justified pills-border-right-radius pills-purple-count"
+            <ul id="nav-pills-bar-radius"
+                class="nav flex-column md-pills nav-justified pills-border-right-radius pills-purple-count"
                 aria-orientation="vertical">
                 <li class="nav-item">
-                    <a id="first-item-nav" class="nav-link active text-left" data-toggle="tab" href="#panel100" role="tab"></a>
+                    <a id="first-item-nav" class="nav-link active text-left" data-toggle="tab" href="#panel100"
+                       role="tab"></a>
                 </li>
                 <li class="nav-item">
-                    <a id="second-item-nav" class="nav-link text-left" data-toggle="tab" href="#panel101" role="tab"></a>
+                    <a id="second-item-nav" class="nav-link text-left" data-toggle="tab" href="#panel101"
+                       role="tab"></a>
                 </li>
-                <li class="nav-item">
-                    <a id="third-item-nav" class="nav-link text-left" data-toggle="tab" href="#panel102" role="tab"></a>
-                </li>
+
             </ul>
 
         </div>
@@ -236,48 +283,50 @@
 
             <!--Panel 2-->
             <div class="tab-pane fade" id="panel101" role="tabpanel">
-
                 <div id="container-rents-fire" class="container">
 
+                </div>
+            </div>
+            <!--/.Panel 2-->
+
+            <!--Panel 3-->
+            <div class="tab-pane fade" id="panel102" role="tabpanel">
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta
+                    doloribus
+                    reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat
+                    ratione
+                    porro voluptate odit minima.</p>
 
             </div>
+            <!--/.Panel 3-->
+
+            <!--Panel 4-->
+            <div class="tab-pane fade" id="panel108" role="tabpanel">
+
+                <div id="container-rents-book" class="container">
+                    <!-- <span class="fa fa-star checked"></span>
+                     <span class="fa fa-star checked"></span>
+                     <span class="fa fa-star checked"></span>
+                     <span class="fa fa-star"></span>
+                     <span class="fa fa-star"></span>-->
+                 </div>
             </div>
-                <!--/.Panel 2-->
+            <!--/.Panel 4-->
 
-                <!--Panel 3-->
-                <div class="tab-pane fade" id="panel102" role="tabpanel">
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta
-                        doloribus
-                        reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat
-                        ratione
-                        porro voluptate odit minima.</p>
+            <!--Panel 5-->
+            <div class="tab-pane fade" id="panel109" role="tabpanel">
+                <div id="all-rents-containers" class="container">
 
                 </div>
-                <!--/.Panel 3-->
-
-                <!--Panel 4-->
-                <div class="tab-pane fade" id="panel108" role="tabpanel">
-
-                    <p>PutoLorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta
-                        doloribus
-                        reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat
-                        ratione
-                        porro voluptate odit minima.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta
-                        doloribus
-                        reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat
-                        ratione
-                        porro voluptate odit minima.</p>
-
-                </div>
-                <!--/.Panel 4-->
-
             </div>
-            <!-- Grid column -->
+            <!--/.Panel 5-->
 
         </div>
-        <!-- Grid row -->
+        <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
 
 
 </main>

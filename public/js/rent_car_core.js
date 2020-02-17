@@ -6,6 +6,9 @@ let lugarRecogida;
 let lugarEntrega;
 let totalPagar;
 let modoPago;
+let allrentcars = [];
+let alluserrentscars = [];
+let idCar;
 
 function initApp() {
     firebase.auth().onAuthStateChanged(function (user) {
@@ -49,6 +52,7 @@ function registerUser() {
 
 function signOutUser() {
     if (firebase.auth().currentUser) {
+        $('#modalLoginForm').modal('hide');
         firebase.auth().signOut().then(function () {
             window.location.href = 'index.html';
         });
@@ -70,6 +74,7 @@ function authUser() {
 
 function myAccount() {
     if (firebase.auth().currentUser) {
+        $('#modalRegisterForm').modal('hide');
         window.location.href = "myaccount.html";
     }
 }
@@ -80,9 +85,10 @@ function addListenerToRentCar(event) {
     let domElement = event.composedPath()[2];
     let carName = domElement.getElementsByClassName("card-title font-weight-bold");
     typeCar = carName[0].innerText;
-    document.getElementById("image-auto-rent").src = jsonCar[typeCar].source;
+    let respCar = searchCar(typeCar);
+    document.getElementById("image-auto-rent").src = respCar[0].source;
     document.getElementById('title-image-rent').innerHTML = typeCar;
-    document.getElementById('description-car-image').innerHTML = "Empezar desde " + jsonCar[typeCar].precio + "$ / por día";
+    document.getElementById('description-car-image').innerHTML = "Empezar desde " + respCar[0].precio + "$ / por día";
 }
 
 function rentCar() {
@@ -95,8 +101,8 @@ function rentCar() {
     if (fechaRecogida !== "" && fechaEntrega !== "" && lugarRecogida !== "" && lugarEntrega !== "") {
         $('#modalRentCar').modal('hide');
         $('#modalPayment').modal();
-
-        totalPagar = calcularCosto(jsonCar[typeCar].precio, fechaRecogida, fechaEntrega);
+        let respCar = searchCar(typeCar);
+        totalPagar = calcularCosto(respCar[0].precio, fechaRecogida, fechaEntrega);
         document.getElementById('totalPagar').innerHTML = "Total a pagar: " + totalPagar;
 
     } else {
@@ -184,7 +190,21 @@ function getUserDataFireBase() {
 }
 
 function getRentCarUsers() {
+    allrentcars.length = 0;
+    let db = firebase.firestore();
+    db.collection("allcars").get()
+        .then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+                allrentcars.push(doc.data());
+            });
+            rents();
+        })
+        .catch(function (error) {
+            console.log("Error getting documents: ", error);
+        });
+}
 
+function rents() {
     let db = firebase.firestore();
     let uuid = firebase.auth().currentUser.uid;
     let content = document.getElementById("container-rents-fire");
@@ -196,6 +216,8 @@ function getRentCarUsers() {
         .get()
         .then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
+
+                alluserrentscars.push(doc.data());
 
                 if (index % 2 === 0) {
                     initialDiv = index;
@@ -210,7 +232,6 @@ function getRentCarUsers() {
         .catch(function (error) {
             console.log("Error getting documents: ", error);
         });
-
 }
 
 function createCardUserRents(index, initialDiv, content, doc) {
@@ -228,7 +249,7 @@ function createCardUserRents(index, initialDiv, content, doc) {
     let cardAttachDiv = document.getElementById("attach-card-" + index);
     let imagecar = document.createElement("img");
     imagecar.className = "card-img-top";
-    imagecar.src = jsonCar[doc.get('tipoAuto')].source;
+    imagecar.src = searchCar(doc.get('tipoAuto'))[0].source;
     cardAttachDiv.appendChild(imagecar);
 
     let cardestDiv = document.createElement("div");
@@ -307,19 +328,35 @@ function enviarValoracionFirebase() {
 
     let startName = document.getElementById('rateMe2').children[0].className;
     let textComentary = document.getElementById('comentaryText');
+    var numeberStart = 0;
 
     if (startName.indexOf("oneStar") !== -1) {
-        console.log(1, textComentary.value);
+        numeberStart = 1;
     } else if (startName.indexOf("twoStars") !== -1) {
-        console.log(2, textComentary.value);
+        numeberStart = 2;
     } else if (startName.indexOf("threeStars") !== -1) {
-        console.log(3, textComentary.value);
+        numeberStart = 3;
     } else if (startName.indexOf("fourStars") !== -1) {
-        console.log(4, textComentary.value);
+        numeberStart = 4;
     } else {
-        console.log(5, textComentary.value);
+        numeberStart = 5;
     }
-    $("#modalRate").modal('hide');
+
+    var db = firebase.firestore();
+    let userUID = firebase.auth().currentUser;
+
+    if (userUID != null) {
+        db.collection("valoraciones").add({
+            numStarts: numeberStart,
+            comentary: textComentary.value,
+            uuid: firebase.auth().currentUser.uid
+        }).then(function () {
+            alert("Su valoración ha sido enviada !!");
+        }).catch(function (error) {
+            alert("No se pudo realizar la valoración!!");
+        });
+        $("#modalRate").modal('hide');
+    }
 }
 
 function jQueryStartRate() {
@@ -448,26 +485,30 @@ function jQueryStartRate() {
 
 function getCatalogFromFirebase() {
 
+
     let db = firebase.firestore();
     let content = document.getElementById("container-rents-fire");
     let index = 0;
     let initialDiv = 0;
     content.innerHTML = "";
 
-    db.collection("allcars").get()
-        .then(function (querySnapshot) {
-            querySnapshot.forEach(function (doc) {
+     allrentcars.length = 0;
 
-                if (index % 3 === 0) {
-                    initialDiv = index;
-                    createCardAllCars(index, initialDiv, content, doc);
-                } else {
-                    createCardAllCars(index, initialDiv, content, doc);
-                }
-                index++;
-            });
-            addListenerstoValorationButtons();
-        })
+    db.collection("allcars").get().then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+
+             allrentcars.push(doc.data());
+
+            if (index % 3 === 0) {
+                initialDiv = index;
+                createCardAllCars(index, initialDiv, content, doc);
+            } else {
+                createCardAllCars(index, initialDiv, content, doc);
+            }
+            index++;
+        });
+        addlistenersEditarButton();
+    })
         .catch(function (error) {
             console.log("Error getting documents: ", error);
         });
@@ -482,11 +523,11 @@ function createCardAllCars(index, initialDiv, content, doc) {
 
     let attachDiv = document.getElementById("car-deck-rent-car-" + initialDiv);
     let cardDiv = document.createElement("div");
-    cardDiv.id = "attach-card-" + index;
+    cardDiv.id = doc.id;
     cardDiv.className = "card mb-2";
     attachDiv.appendChild(cardDiv);
 
-    let cardAttachDiv = document.getElementById("attach-card-" + index);
+    let cardAttachDiv = document.getElementById(doc.id);
     let imagecar = document.createElement("img");
     imagecar.className = "card-img-top";
     imagecar.src = doc.get('source');
@@ -504,7 +545,7 @@ function createCardAllCars(index, initialDiv, content, doc) {
 
     let precioCard = document.createElement("p");
     precioCard.className = "card-text";
-    precioCard.innerText = "Empezar desde " + doc.get('precio') + "$ / por día";
+    precioCard.innerText = "Empezar desde " + doc.get('precio') + ".00$ / por día";
 
     let valorarButtonCard = document.createElement("a");
     valorarButtonCard.type = "button";
@@ -528,21 +569,35 @@ function getAdminDataFromFireBase() {
                 let navHeader = document.getElementById("nav-pills-bar-radius");
                 let newItem = document.createElement("li");
                 newItem.className = "nav-item";
-                newItem.id = "admin-data-fire"
+                newItem.id = "admin-data-fire";
                 navHeader.appendChild(newItem);
 
-                let itemAdmin = document.getElementById("admin-data-fire")
-                itemAdmin.innerHTML = "<a id=\"first-item-nav\" class=\"nav-link text-left\" data-toggle=\"tab\" href=\"#panel108\" role=\"tab\">" + "<i class=\"far fa-star mr-4\"></i>Ver Valoraciones</a>"
+                let navHeader2 = document.getElementById("nav-pills-bar-radius");
+                let newItem2 = document.createElement("li");
+                newItem2.className = "nav-item";
+                newItem2.id = "admin-data-fire2";
+                navHeader2.appendChild(newItem2);
+
+                let itemAdmin = document.getElementById("admin-data-fire");
+                itemAdmin.innerHTML = "<a id=\"first-item-nav\" class=\"nav-link text-left\" data-toggle=\"tab\" href=\"#panel108\" role=\"tab\">" + "<i class=\"far fa-star mr-4\"></i>Ver Valoraciones</a>";
+                itemAdmin.onclick = getAllRates();
+
+                let itemAdmin2 = document.getElementById("admin-data-fire2");
+                itemAdmin2.innerHTML = "<a id=\"first-item-nav\" class=\"nav-link text-left\" data-toggle=\"tab\" href=\"#panel109\" role=\"tab\">" + "<i class=\"fas fa-book mr-4\"></i>Ver Alquileres</a>";
+                itemAdmin2.addEventListener('click', event => {
+                    fillAllAquileres();
+                });
 
                 let itemfirst = document.getElementById("first-item-nav");
                 itemfirst.innerHTML = "<i class=\"fas fa-user-circle mr-4\"></i>Información Personal";
 
                 let itemsecond = document.getElementById("second-item-nav");
                 itemsecond.innerHTML = "<i class=\"fas fa-user-shield mr-4\"></i>Administrar Catalogo";
-                itemsecond.onclick = getCatalogFromFirebase();
 
-                let thirdfirst = document.getElementById("third-item-nav");
-                thirdfirst.innerHTML = "<i class=\"fas fa-car mr-4\"></i>Administrar Ofertas";
+                itemsecond.addEventListener('click', event => {
+                    getCatalogFromFirebase();
+                });
+
                 document.getElementById("nombre-user-rent").innerText = "Bienvenido, " + displayName;
                 document.getElementById("email-user-rent").innerText = email;
             }
@@ -554,8 +609,6 @@ function getAdminDataFromFireBase() {
 function userOrAdmin() {
 
     let user = firebase.auth().currentUser.uid;
-    console.log(user);
-
     if (user === "J7pLYclm40NwY3vWIGoYZYbFQd72") {
         getAdminDataFromFireBase()
     } else {
@@ -573,9 +626,12 @@ function fillCatalogAutos() {
     if (content != null) {
 
         content.innerHTML = "";
+        allrentcars.length = 0;
 
         db.collection("allcars").get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
+
+                allrentcars.push(doc.data());
 
                 if (index % 3 === 0) {
                     initialDiv = index;
@@ -591,6 +647,67 @@ function fillCatalogAutos() {
                 console.log("Error getting documents: ", error);
             });
     }
+}
+
+
+function addlistenersEditarButton() {
+    document.querySelectorAll(".btn.btn-editar.btn-rounded").forEach(item => {
+        item.addEventListener('click', event => {
+            addListenerToEditarButton(event);
+        });
+    });
+
+}
+
+function addListenerToEditarButton(event) {
+
+    $("#modalEditarForm").modal();
+
+    let domElement = event.composedPath()[2];
+    let carName = domElement.getElementsByClassName("card-title font-weight-bold");
+    let typeCar2 = carName[0].innerText;
+    let respCar = searchCar(typeCar2);
+    document.getElementById("image-auto-rent-edit").src = respCar[0].source;
+    let name = respCar[0].name;
+    idCar = domElement.id;
+    let precio = respCar[0].precio;
+
+    document.getElementById("form_nombre").value = name;
+    document.getElementById("form_precio").value = precio;
+
+
+    //console.log(carName[0].src);
+    //
+
+
+    // console.log(allrentcars.fin(carRent));
+    /*
+    let domElement = event.[]composedPath()[2];
+    let carName = domElement.getElementsByClassName("card-title font-weight-bold");
+    typeCar = carName[0].innerText;
+    document.getElementById("image-auto-rent").src = jsonCar[typeCar].source;
+    document.getElementById('title-image-rent').innerHTML = typeCar;
+    document.getElementById('description-car-image').innerHTML = "Empezar desde " + jsonCar[typeCar].precio + "$ / por día";*/
+}
+
+function saveEdit() {
+    let db = firebase.firestore();
+    db.collection("allcars").doc(idCar).update({
+        name: document.getElementById("form_nombre").value,
+        precio: document.getElementById("form_precio").value
+    }).then(function () {
+        console.log("Document successfully updated!");
+        $("#modalEditarForm").modal('hide');
+        getCatalogFromFirebase();
+    }).catch(function (error) {
+        console.error("Error updating document: ", error);
+    });
+}
+
+function searchCar(carRent) {
+    return allrentcars.filter(function (elemento) {
+        return elemento.name === carRent;
+    });
 }
 
 function createCardAllCarsCatalog(index, initialDiv, content, doc) {
@@ -623,7 +740,7 @@ function createCardAllCarsCatalog(index, initialDiv, content, doc) {
 
     let precioCard = document.createElement("p");
     precioCard.className = "card-text";
-    precioCard.innerText = "Empezar desde " + doc.get('precio') + "$ / por día";
+    precioCard.innerText = "Empezar desde " + doc.get('precio') + ".00$ / por día";
 
     let alquilarButtonCard = document.createElement("a");
     alquilarButtonCard.type = "button";
@@ -661,122 +778,300 @@ function createCardAllCarsCatalog(index, initialDiv, content, doc) {
     lastDivInfo.appendChild(instaButtonCard);
 }
 
-let jsonCar = {
-    "CHEVROLET CAVALIER":
-        {
-            "name": "CHEVROLET CAVALIER",
-            "precio": 65,
-            "source": "./resources/Auto1.svg"
-        },
-    "HYUNDAI IONIQ":
-        {
-            "name": "HYUNDAI IONIQ",
-            "precio": 80,
-            "source": "./resources/Auto2.svg"
-        },
-    "CHEVROLET SAIL":
-        {
-            "name": "CHEVROLET SAIL",
-            "precio": 50,
-            "source": "./resources/Auto3.svg"
-        },
-    "CHEVROLET AVEO EMOTION":
-        {
-            "name": "CHEVROLET AVEO EMOTION",
-            "precio": 55,
-            "source": "./resources/Auto4.svg"
-        },
-    "FORD EXPLORER":
-        {
-            "name": "FORD EXPLORER",
-            "precio": 120,
-            "source": "./resources/Auto5.svg"
-        },
-    "HYUNDAI SANTA FE":
-        {
-            "name": "HYUNDAI SANTA FE",
-            "precio": 90,
-            "source": "./resources/Auto6.svg"
-        },
-    "KIA RIO R":
-        {
-            "name": "KIA RIO R",
-            "precio": 60,
-            "source": "./resources/Auto7.jpg"
-        },
-    "RENAULT DUSTER":
-        {
-            "name": "RENAULT DUSTER",
-            "precio": 70,
-            "source": "./resources/Auto8.jpg"
-        },
-    "GRAND VITARA SZ":
-        {
-            "name": "GRAND VITARA SZ",
-            "precio": 85,
-            "source": "./resources/Auto9.jpg"
-        },
-    "HYUNDAI H1":
-        {
-            "name": "HYUNDAI H1",
-            "precio": 120,
-            "source": "./resources/Auto10.jpg"
-        },
-    "CHEVROLET VAN N300":
-        {
-            "name": "CHEVROLET VAN N300",
-            "precio": 70,
-            "source": "./resources/Auto11.jpg"
-        },
-    "CHEVROLET ORLANDO":
-        {
-            "name": "CHEVROLET ORLANDO",
-            "precio": 90,
-            "source": "./resources/Auto12.jpg"
-        },
-    "TOYOTA FORTUNER":
-        {
-            "name": "TOYOTA FORTUNER",
-            "precio": 100,
-            "source": "./resources/Auto13.png"
-        },
-    "Chevrolet D – MAX":
-        {
-            "name": "Chevrolet D – MAX",
-            "precio": 95,
-            "source": "./resources/Auto14.png"
-        },
-    "KIA CERATO":
-        {
-            "name": "KIA CERATO",
-            "precio": 90,
-            "source": "./resources/Auto15.png"
-        },
-    "Mazda BT – 50":
-        {
-            "name": "Mazda BT – 50",
-            "precio": 95,
-            "source": "./resources/Auto16.png"
-        }
-    ,
-    "KIA SPORTAGE ACTIVE":
-        {
-            "name": "KIA SPORTAGE ACTIVE",
-            "precio": 75,
-            "source": "./resources/Auto17.png"
-        }
-    ,
-    "KIA SPORTAGE R":
-        {
-            "name": "KIA SPORTAGE R",
-            "precio": 80,
-            "source": "./resources/Auto18.png"
-        }
-};
+function fillOfertasAutos() {
+    let db = firebase.firestore();
+    allrentcars.length = 0;
+    db.collection("allcars").get().then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+            allrentcars.push(doc.data());
+        });
+        ofertas();
+    }).catch(function (error) {
+        console.log("Error getting documents: ", error);
+    });
+
+}
+
+function ofertas() {
+    let db = firebase.firestore();
+    let content = document.getElementById("ofertas-container-2020");
+    let index = 0;
+    let initialDiv = 0;
+
+    if (content != null) {
+
+        content.innerHTML = "";
+
+        db.collection("ofertas").get().then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+
+                if (index % 2 === 0) {
+                    initialDiv = index;
+                    createCardAllOfertasCatalog(index, initialDiv, content, doc);
+                } else {
+                    createCardAllOfertasCatalog(index, initialDiv, content, doc);
+                }
+                index++;
+            });
+            addListenersRentCar();
+        })
+            .catch(function (error) {
+                console.log("Error getting documents: ", error);
+            });
+    }
+}
+
+function createCardAllOfertasCatalog(index, initialDiv, content, doc) {
+    let initDiv = document.createElement("div");
+    initDiv.id = "car-deck-rent-car-" + initialDiv;
+    initDiv.className = "card-deck mb-3 text-center";
+    content.appendChild(initDiv);
+
+    let attachDiv = document.getElementById("car-deck-rent-car-" + initialDiv);
+    let cardDiv = document.createElement("div");
+    cardDiv.id = "attach-card-" + index;
+    cardDiv.className = "card mb-2";
+    attachDiv.appendChild(cardDiv);
+
+    let cardAttachDiv = document.getElementById("attach-card-" + index);
+    let imagecar = document.createElement("img");
+    imagecar.className = "card-img-top";
+    imagecar.src = doc.get('source');
+    cardAttachDiv.appendChild(imagecar);
+
+    let cardestDiv = document.createElement("div");
+    cardestDiv.className = "card-body text-center";
+    cardestDiv.id = "card-body-text-" + index;
+    cardAttachDiv.appendChild(cardestDiv);
+
+    let lastDivInfo = document.getElementById("card-body-text-" + index);
+    let namecard = document.createElement("h4");
+    namecard.className = "card-title font-weight-bold";
+    namecard.innerText = doc.get('name');
+
+    let decripcionCard = document.createElement("p");
+    decripcionCard.className = "card-text";
+    decripcionCard.innerText = doc.get('descripcion');
+
+    let precioCard = document.createElement("p");
+    precioCard.className = "card-text";
+    precioCard.innerText = "Empezar desde " + doc.get('precio') + ".00$ / por día";
+
+    let alquilarButtonCard = document.createElement("a");
+    alquilarButtonCard.type = "button";
+    alquilarButtonCard.className = "btn btn-small btn-alquilar btn-rounded";
+    alquilarButtonCard.target = "#modalRentCar";
+    alquilarButtonCard.style = "background-color: #52489C";
+    alquilarButtonCard.innerText = "Alquilar";
+
+    let brtag = document.createElement("br");
+    let brtag2 = document.createElement("br");
+
+
+    let facebookButtonCard = document.createElement("a");
+    facebookButtonCard.type = "button";
+    facebookButtonCard.className = "btn-floating btn-small btn-fb";
+    facebookButtonCard.innerHTML = "<i class=\"fab fa-facebook-f\"></i>";
+
+    let twitterButtonCard = document.createElement("a");
+    twitterButtonCard.type = "button";
+    twitterButtonCard.className = "btn-floating btn-small btn-tw";
+    twitterButtonCard.innerHTML = "<i class=\"fab fa-twitter\"></i>";
+
+    let instaButtonCard = document.createElement("a");
+    instaButtonCard.type = "button";
+    instaButtonCard.className = "btn-floating btn-small btn-dribbble";
+    instaButtonCard.innerHTML = "<i class=\"fab fa-instagram\"></i>";
+
+    lastDivInfo.appendChild(namecard);
+    lastDivInfo.appendChild(decripcionCard);
+    lastDivInfo.appendChild(precioCard);
+    lastDivInfo.appendChild(alquilarButtonCard);
+    lastDivInfo.appendChild(brtag);
+    lastDivInfo.appendChild(brtag2);
+    lastDivInfo.appendChild(facebookButtonCard);
+    lastDivInfo.appendChild(twitterButtonCard);
+    lastDivInfo.appendChild(instaButtonCard);
+}
+
+function fillAllAquileres() {
+
+    let db = firebase.firestore();
+    let content = document.getElementById("all-rents-containers");
+    let index = 0;
+    let initialDiv = 0;
+
+    let content2 = document.getElementById("container-rents-fire");
+    content2.innerHTML = "";
+
+    if (content != null) {
+
+        content.innerHTML = "";
+
+        db.collection("rents").get().then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+
+                if (index % 3 === 0) {
+                    initialDiv = index;
+                    getAllCarRents(index, initialDiv, content, doc);
+                } else {
+                    getAllCarRents(index, initialDiv, content, doc);
+                }
+                index++;
+            });
+            addListenersRentCar();
+        })
+            .catch(function (error) {
+                console.log("Error getting documents: ", error);
+            });
+    }
+}
+
+function getAllCarRents(index, initialDiv, content, doc) {
+    let initDiv = document.createElement("div");
+    initDiv.id = "car-deck-rent-car-" + initialDiv;
+    initDiv.className = "card-deck mb-3 text-center";
+    content.appendChild(initDiv);
+
+    let attachDiv = document.getElementById("car-deck-rent-car-" + initialDiv);
+    let cardDiv = document.createElement("div");
+    cardDiv.id = doc.id;
+    cardDiv.className = "card mb-2";
+    attachDiv.appendChild(cardDiv);
+
+    let cardAttachDiv = document.getElementById(doc.id);
+    let imagecar = document.createElement("img");
+    imagecar.className = "card-img-top";
+    imagecar.src = searchCar(doc.get('tipoAuto'))[0].source;
+    // console.log(allrentcars);
+    //console.log(searchCar(doc.get('tipoAuto')));
+    cardAttachDiv.appendChild(imagecar);
+
+    let cardestDiv = document.createElement("div");
+    cardestDiv.className = "card-body text-center";
+    cardestDiv.id = "card-body-text-" + index;
+    cardAttachDiv.appendChild(cardestDiv);
+
+    let lastDivInfo = document.getElementById("card-body-text-" + index);
+    let namecard = document.createElement("h4");
+    namecard.className = "card-title font-weight-bold";
+    namecard.innerText = doc.get('tipoAuto');
+
+    let fechaRecogidaCard = document.createElement("p");
+    fechaRecogidaCard.className = "card-text";
+    fechaRecogidaCard.innerText = "Fecha de recogida: " + doc.get('fechaRecogida');
+
+    let fechaentregaCard = document.createElement("p");
+    fechaentregaCard.className = "card-text";
+    fechaentregaCard.innerText = "Fecha de entrega: " + doc.get('fechaEntrega');
+
+    let LugarRecogidaCard = document.createElement("p");
+    LugarRecogidaCard.className = "card-text";
+    LugarRecogidaCard.innerText = "Lugar de recogida: " + doc.get('lugarRecogida');
+
+    let LugarEntregaCard = document.createElement("p");
+    LugarEntregaCard.className = "card-text";
+    LugarEntregaCard.innerText = "Lugar de entrega: " + doc.get('lugarEntrega');
+
+    let precioTotalCard = document.createElement("p");
+    precioTotalCard.className = "card-text";
+    precioTotalCard.innerText = "Total a pagar: " + doc.get('totalPagar');
+
+    let metodoPagoCard = document.createElement("p");
+    metodoPagoCard.className = "card-text";
+    metodoPagoCard.innerText = "Método de pago: " + doc.get('metodoPago');
+
+    lastDivInfo.appendChild(namecard);
+    lastDivInfo.appendChild(fechaRecogidaCard);
+    lastDivInfo.appendChild(fechaentregaCard);
+    lastDivInfo.appendChild(LugarRecogidaCard);
+    lastDivInfo.appendChild(LugarEntregaCard);
+    lastDivInfo.appendChild(precioTotalCard);
+    lastDivInfo.appendChild(metodoPagoCard);
+}
+
+function getAllRates() {
+    jQueryStartRate();
+
+    let db = firebase.firestore();
+
+    db.collection("valoraciones").get().then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+            createStarts(doc);
+        });
+
+    }).catch(function (error) {
+        console.log("Error getting documents: ", error);
+    });
+
+}
+
+function createStarts(doc) {
+    let maindiv = document.getElementById('container-rents-book');
+    let ratediv = document.createElement("span");
+    let ratediv2 = document.createElement("span");
+    let ratediv3 = document.createElement("span");
+    let ratediv4 = document.createElement("span");
+    let ratediv5 = document.createElement("span");
+
+    if (doc.get('numStarts') === 5) {
+        ratediv.className = "fa fa-star checked";
+        ratediv2.className = "fa fa-star checked";
+        ratediv3.className = "fa fa-star checked";
+        ratediv4.className = "fa fa-star checked";
+        ratediv5.className = "fa fa-star checked";
+    } else if (doc.get('numStarts') === 4) {
+        ratediv.className = "fa fa-star checked";
+        ratediv2.className = "fa fa-star checked";
+        ratediv3.className = "fa fa-star checked";
+        ratediv4.className = "fa fa-star checked";
+        ratediv5.className = "fa fa-star ";
+    } else if (doc.get('numStarts') === 3) {
+        ratediv.className = "fa fa-star checked";
+        ratediv2.className = "fa fa-star checked";
+        ratediv3.className = "fa fa-star checked";
+        ratediv4.className = "fa fa-star";
+        ratediv5.className = "fa fa-star";
+    } else if (doc.get('numStarts') === 2) {
+        ratediv.className = "fa fa-star checked";
+        ratediv2.className = "fa fa-star checked";
+        ratediv3.className = "fa fa-star";
+        ratediv4.className = "fa fa-star";
+        ratediv5.className = "fa fa-star";
+    } else if (doc.get('numStarts') === 1) {
+        ratediv.className = "fa fa-star checked";
+        ratediv2.className = "fa fa-star";
+        ratediv3.className = "fa fa-star";
+        ratediv4.className = "fa fa-star";
+        ratediv5.className = "fa fa-star";
+    } else {
+        ratediv.className = "fa fa-star";
+        ratediv2.className = "fa fa-star";
+        ratediv3.className = "fa fa-star";
+        ratediv4.className = "fa fa-star";
+        ratediv5.className = "fa fa-star";
+    }
+
+    let brtag = document.createElement("br");
+    let brtag2 = document.createElement("br");
+    maindiv.appendChild(ratediv);
+    maindiv.appendChild(ratediv2);
+    maindiv.appendChild(ratediv3);
+    maindiv.appendChild(ratediv4);
+    maindiv.appendChild(ratediv5);
+    maindiv.appendChild(brtag);
+    maindiv.appendChild(brtag2);
+
+    let comentaryText = document.createElement('p');
+    comentaryText.className = "text-left";
+    comentaryText.innerText = doc.get('comentary');
+    maindiv.appendChild(comentaryText);
+}
 
 window.onload = function () {
     initApp();
     addListenersRentCar();
     fillCatalogAutos();
+    fillOfertasAutos();
 };
 

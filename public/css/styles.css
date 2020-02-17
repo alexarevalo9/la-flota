@@ -172,4 +172,6 @@ h6 {
 .mdb-rating .amber-text {
   color: #ffc107 !important;
 }
-
+.checked {
+   color: orange;
+}
