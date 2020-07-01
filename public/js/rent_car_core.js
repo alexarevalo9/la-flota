@@ -180,8 +180,6 @@ function getUserDataFireBase() {
                 let itemsecond = document.getElementById("second-item-nav");
                 itemsecond.innerHTML = "<i class=\"fas fa-car mr-4\"></i>Autos Rentados";
                 itemsecond.onclick = getRentCarUsers();
-                let thirdfirst = document.getElementById("third-item-nav");
-                thirdfirst.innerHTML = "<i class=\"fas fa-credit-card mr-4\"></i>Metodos de Pagos";
                 document.getElementById("nombre-user-rent").innerText = "Bienvenido, " + displayName;
                 document.getElementById("email-user-rent").innerText = email;
             }
